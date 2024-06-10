@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>MainView.fxml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #6aab73;}
+.s3 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainView.fxml</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;?</span><span class="s1">xml version</span><span class="s2">=&quot;1.0&quot; </span><span class="s1">encoding</span><span class="s2">=&quot;UTF-8&quot;</span><span class="s0">?&gt;</span>
+
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.geometry.Insets</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.control.Button</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.control.Label</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.control.TextField</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.layout.BorderPane</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.layout.HBox</span><span class="s0">?&gt;</span>
+<span class="s0">&lt;?</span><span class="s1">import </span><span class="s2">javafx.scene.layout.VBox</span><span class="s0">?&gt;</span>
+
+<span class="s0">&lt;BorderPane </span><span class="s1">xmlns:fx</span><span class="s2">=&quot;http://javafx.com/fxml&quot; </span><span class="s1">fx:controller</span><span class="s2">=&quot;com.example.weatherapp.MainViewController&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;top&gt;</span>
+        <span class="s0">&lt;HBox </span><span class="s1">spacing</span><span class="s2">=&quot;10&quot; </span><span class="s1">padding</span><span class="s2">=&quot;10&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">text</span><span class="s2">=&quot;Enter City:&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;TextField </span><span class="s1">fx:id</span><span class="s2">=&quot;cityTextField&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Button </span><span class="s1">text</span><span class="s2">=&quot;Get Weather&quot; </span><span class="s1">onAction</span><span class="s2">=&quot;#handleGetWeather&quot;</span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/HBox&gt;</span>
+    <span class="s0">&lt;/top&gt;</span>
+    <span class="s0">&lt;center&gt;</span>
+        <span class="s0">&lt;VBox </span><span class="s1">spacing</span><span class="s2">=&quot;10&quot; </span><span class="s1">padding</span><span class="s2">=&quot;10&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">text</span><span class="s2">=&quot;Weather Details&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">text</span><span class="s2">=&quot;Temperature:&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">fx:id</span><span class="s2">=&quot;temperatureLabel&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">text</span><span class="s2">=&quot;Humidity:&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">fx:id</span><span class="s2">=&quot;humidityLabel&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">text</span><span class="s2">=&quot;Wind Speed:&quot;</span><span class="s0">/&gt;</span>
+            <span class="s0">&lt;Label </span><span class="s1">fx:id</span><span class="s2">=&quot;windSpeedLabel&quot;</span><span class="s0">/&gt;</span>
+        <span class="s0">&lt;/VBox&gt;</span>
+    <span class="s0">&lt;/center&gt;</span>
+<span class="s0">&lt;/BorderPane&gt;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>WeatherApp.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+WeatherApp.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">example</span><span class="s2">.</span><span class="s1">weatherapp</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">application</span><span class="s2">.</span><span class="s1">Application</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">geometry</span><span class="s2">.</span><span class="s1">Insets</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">Scene</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">control</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">Image</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">scene</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javafx</span><span class="s2">.</span><span class="s1">stage</span><span class="s2">.</span><span class="s1">Stage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">google</span><span class="s2">.</span><span class="s1">gson</span><span class="s2">.</span><span class="s1">JsonObject</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">WeatherApp </span><span class="s0">extends </span><span class="s1">Application </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">TextField locationField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Label weatherInfo</span><span class="s2">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">start</span><span class="s2">(</span><span class="s1">Stage primaryStage</span><span class="s2">) {</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">setTitle</span><span class="s2">(</span><span class="s3">&quot;Weather Information App&quot;</span><span class="s2">);</span>
+
+        <span class="s4">// Load the new background image</span>
+        <span class="s1">Image backgroundImage </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Image</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s3">&quot;/images/background.jpg&quot;</span><span class="s2">));</span>
+        <span class="s1">BackgroundImage background </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BackgroundImage</span><span class="s2">(</span><span class="s1">backgroundImage</span><span class="s2">, </span><span class="s1">BackgroundRepeat</span><span class="s2">.</span><span class="s1">NO_REPEAT</span><span class="s2">, </span><span class="s1">BackgroundRepeat</span><span class="s2">.</span><span class="s1">NO_REPEAT</span><span class="s2">, </span><span class="s1">BackgroundPosition</span><span class="s2">.</span><span class="s1">DEFAULT</span><span class="s2">, </span><span class="s1">BackgroundSize</span><span class="s2">.</span><span class="s1">DEFAULT</span><span class="s2">);</span>
+        <span class="s1">Background backgroundStyle </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Background</span><span class="s2">(</span><span class="s1">background</span><span class="s2">);</span>
+
+        <span class="s4">// Create the layout pane</span>
+        <span class="s1">VBox layout </span><span class="s2">= </span><span class="s0">new </span><span class="s1">VBox</span><span class="s2">();</span>
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setSpacing</span><span class="s2">(</span><span class="s5">10</span><span class="s2">);</span>
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s5">20</span><span class="s2">));</span>
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">backgroundStyle</span><span class="s2">); </span><span class="s4">// Set the background image</span>
+
+        <span class="s4">// Create location input field</span>
+        <span class="s1">locationField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextField</span><span class="s2">();</span>
+        <span class="s1">locationField</span><span class="s2">.</span><span class="s1">setPromptText</span><span class="s2">(</span><span class="s3">&quot;Enter location (e.g., city name)&quot;</span><span class="s2">);</span>
+
+        <span class="s4">// Create fetch weather button</span>
+        <span class="s1">Button fetchWeatherButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Button</span><span class="s2">(</span><span class="s3">&quot;Get Weather&quot;</span><span class="s2">);</span>
+        <span class="s1">fetchWeatherButton</span><span class="s2">.</span><span class="s1">setOnAction</span><span class="s2">(</span><span class="s1">e -&gt; fetchWeather</span><span class="s2">());</span>
+
+        <span class="s4">// Create label for weather information</span>
+        <span class="s1">weatherInfo </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Label</span><span class="s2">();</span>
+
+        <span class="s4">// Add nodes to layout</span>
+        <span class="s1">layout</span><span class="s2">.</span><span class="s1">getChildren</span><span class="s2">().</span><span class="s1">addAll</span><span class="s2">(</span><span class="s1">locationField</span><span class="s2">, </span><span class="s1">fetchWeatherButton</span><span class="s2">, </span><span class="s1">weatherInfo</span><span class="s2">);</span>
+
+        <span class="s4">// Set the scene</span>
+        <span class="s1">Scene scene </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scene</span><span class="s2">(</span><span class="s1">layout</span><span class="s2">, </span><span class="s5">400</span><span class="s2">, </span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">setScene</span><span class="s2">(</span><span class="s1">scene</span><span class="s2">);</span>
+        <span class="s1">primaryStage</span><span class="s2">.</span><span class="s1">show</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">fetchWeather</span><span class="s2">() {</span>
+        <span class="s1">String location </span><span class="s2">= </span><span class="s1">locationField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">().</span><span class="s1">trim</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(!</span><span class="s1">location</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s4">// Fetch weather data</span>
+                <span class="s1">JsonObject weatherData </span><span class="s2">= <a href="WeatherAPI.java.html">WeatherAPI</a>.</span><span class="s1">getWeatherData</span><span class="s2">(</span><span class="s1">location</span><span class="s2">);</span>
+                <span class="s1">String temperature </span><span class="s2">= </span><span class="s1">weatherData</span><span class="s2">.</span><span class="s1">getAsJsonObject</span><span class="s2">(</span><span class="s3">&quot;main&quot;</span><span class="s2">).</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;temp&quot;</span><span class="s2">).</span><span class="s1">getAsString</span><span class="s2">();</span>
+                <span class="s1">String humidity </span><span class="s2">= </span><span class="s1">weatherData</span><span class="s2">.</span><span class="s1">getAsJsonObject</span><span class="s2">(</span><span class="s3">&quot;main&quot;</span><span class="s2">).</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;humidity&quot;</span><span class="s2">).</span><span class="s1">getAsString</span><span class="s2">();</span>
+                <span class="s1">String windSpeed </span><span class="s2">= </span><span class="s1">weatherData</span><span class="s2">.</span><span class="s1">getAsJsonObject</span><span class="s2">(</span><span class="s3">&quot;wind&quot;</span><span class="s2">).</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;speed&quot;</span><span class="s2">).</span><span class="s1">getAsString</span><span class="s2">();</span>
+                <span class="s1">String description </span><span class="s2">= </span><span class="s1">weatherData</span><span class="s2">.</span><span class="s1">getAsJsonArray</span><span class="s2">(</span><span class="s3">&quot;weather&quot;</span><span class="s2">).</span><span class="s1">get</span><span class="s2">(</span><span class="s5">0</span><span class="s2">).</span><span class="s1">getAsJsonObject</span><span class="s2">().</span><span class="s1">get</span><span class="s2">(</span><span class="s3">&quot;description&quot;</span><span class="s2">).</span><span class="s1">getAsString</span><span class="s2">();</span>
+
+                <span class="s4">// Display weather information</span>
+                <span class="s1">weatherInfo</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s3">&quot;Temperature: &quot; </span><span class="s2">+ </span><span class="s1">temperature </span><span class="s2">+ </span><span class="s3">&quot;°C</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;Humidity: &quot; </span><span class="s2">+ </span><span class="s1">humidity </span><span class="s2">+ </span><span class="s3">&quot;%</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;Wind Speed: &quot; </span><span class="s2">+ </span><span class="s1">windSpeed </span><span class="s2">+ </span><span class="s3">&quot; m/s</span><span class="s0">\n</span><span class="s3">&quot; </span><span class="s2">+</span>
+                        <span class="s3">&quot;Description: &quot; </span><span class="s2">+ </span><span class="s1">description</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception ex</span><span class="s2">) {</span>
+                <span class="s1">weatherInfo</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s3">&quot;Error fetching weather data&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">weatherInfo</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s3">&quot;Please enter a location&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">launch</span><span class="s2">(</span><span class="s1">args</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
